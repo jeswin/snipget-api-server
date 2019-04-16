@@ -9,32 +9,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
-const pg = require("pg");
 require("should");
+const pg = require("pg");
 const psychopiggy = require("psychopiggy");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const shouldLib = require("should");
 const [dropTablesSQL, createTablesSQL] = ["drop-tables", "create-tables"].map(filename => fs_1.readFileSync(path_1.join(__dirname, `../../pgschema/${filename}.sql`)).toString());
 if ([
-    process.env.XNIPPET_TESTDB,
-    process.env.XNIPPET_HOST,
-    process.env.XNIPPET_PASSWORD,
-    process.env.XNIPPET_PORT,
-    process.env.XNIPPET_USER
+    process.env.SNIPGET_TESTDB,
+    process.env.SNIPGET_HOST,
+    process.env.SNIPGET_PASSWORD,
+    process.env.SNIPGET_PORT,
+    process.env.SNIPGET_USER
 ].some(x => typeof x === "undefined")) {
     // tslint:disable:max-line-length
-    throw new Error(`Test env variables are not set. You need to set XNIPPET_TESTDB, XNIPPET_HOST, XNIPPET_PASSWORD, XNIPPET_PORT and XNIPPET_USER`);
+    throw new Error(`Test env variables are not set. You need to set SNIPGET_TESTDB, SNIPGET_HOST, SNIPGET_PASSWORD, SNIPGET_PORT and SNIPGET_USER`);
     // tslint:enable:max-line-length
 }
 const config = {
-    database: process.env.XNIPPET_TESTDB,
-    host: process.env.XNIPPET_HOST,
-    password: process.env.XNIPPET_PASSWORD,
-    port: process.env.XNIPPET_PORT
-        ? parseInt(process.env.XNIPPET_PORT, 10)
+    database: process.env.SNIPGET_TESTDB,
+    host: process.env.SNIPGET_HOST,
+    password: process.env.SNIPGET_PASSWORD,
+    port: process.env.SNIPGET_PORT
+        ? parseInt(process.env.SNIPGET_PORT, 10)
         : 5432,
-    user: process.env.XNIPPET_USER
+    user: process.env.SNIPGET_USER
 };
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -64,7 +64,7 @@ describe("psychopiggy", () => {
             yield psychopiggy.endPools();
         });
     });
-    it("returns Params", () => __awaiter(this, void 0, void 0, function* () {
+    it("inserts ", () => __awaiter(this, void 0, void 0, function* () {
         const params = new psychopiggy.Params({ username: "jeswin" });
         shouldLib.exist(params);
     }));

@@ -14,28 +14,28 @@ const [dropTablesSQL, createTablesSQL] = ["drop-tables", "create-tables"].map(
 
 if (
   [
-    process.env.XNIPPET_TESTDB,
-    process.env.XNIPPET_HOST,
-    process.env.XNIPPET_PASSWORD,
-    process.env.XNIPPET_PORT,
-    process.env.XNIPPET_USER
+    process.env.SNIPGET_TESTDB,
+    process.env.SNIPGET_HOST,
+    process.env.SNIPGET_PASSWORD,
+    process.env.SNIPGET_PORT,
+    process.env.SNIPGET_USER
   ].some(x => typeof x === "undefined")
 ) {
   // tslint:disable:max-line-length
   throw new Error(
-    `Test env variables are not set. You need to set XNIPPET_TESTDB, XNIPPET_HOST, XNIPPET_PASSWORD, XNIPPET_PORT and XNIPPET_USER`
+    `Test env variables are not set. You need to set SNIPGET_TESTDB, SNIPGET_HOST, SNIPGET_PASSWORD, SNIPGET_PORT and SNIPGET_USER`
   );
   // tslint:enable:max-line-length
 }
 
 const config = {
-  database: process.env.XNIPPET_TESTDB,
-  host: process.env.XNIPPET_HOST,
-  password: process.env.XNIPPET_PASSWORD,
-  port: process.env.XNIPPET_PORT
-    ? parseInt(process.env.XNIPPET_PORT, 10)
+  database: process.env.SNIPGET_TESTDB,
+  host: process.env.SNIPGET_HOST,
+  password: process.env.SNIPGET_PASSWORD,
+  port: process.env.SNIPGET_PORT
+    ? parseInt(process.env.SNIPGET_PORT, 10)
     : 5432,
-  user: process.env.XNIPPET_USER
+  user: process.env.SNIPGET_USER
 };
 
 function sleep(ms: number) {

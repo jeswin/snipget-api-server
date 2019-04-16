@@ -1,2 +1,2 @@
-# xnippet-server
-Xnippet Server
+# SNIPGET-server
+SNIPGET Server
