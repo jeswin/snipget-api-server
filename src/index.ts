@@ -7,7 +7,7 @@ import { publish, removeVersion } from "./api/publish";
 import { search } from "./api/search";
 import { getUser, createUser, removeUser } from "./api/users";
 
-async function init() {
+export default function init(port: number) {
   const app = new Koa();
   app.use(bodyParser());
 
@@ -24,9 +24,12 @@ async function init() {
     router.get("/search", search)
   ].forEach(r => app.use(r));
 
-  app.listen(3000);
+  app.listen(port);
 
-  console.log("Listening on 3000");
+  console.log(`Listening on ${port}`);
 }
 
-init();
+if (!module.parent) {
+  const port = process.argv.length > 2 ? parseInt(process.argv[2]) : 1983;
+  init(port);
+}

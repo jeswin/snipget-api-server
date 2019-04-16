@@ -4,8 +4,11 @@ import pg = require("pg");
 import * as psychopiggy from "psychopiggy";
 import { readFileSync } from "fs";
 import { join } from "path";
+import axios from "axios";
+import serverInit from "../";
 
 const shouldLib = require("should");
+const request = axios.create({ baseURL: "http://localhost:1983" });
 
 const [dropTablesSQL, createTablesSQL] = ["drop-tables", "create-tables"].map(
   filename =>
@@ -57,6 +60,9 @@ describe("psychopiggy", () => {
     }
 
     await pool.query(`CREATE DATABASE ${config.database}`);
+
+    // Let's start the server
+    serverInit(1983);
   });
 
   beforeEach(async function resetTables() {
@@ -70,6 +76,13 @@ describe("psychopiggy", () => {
   });
 
   it("inserts ", async () => {
+    const result = await request.post("/users", {
+      username: "jeswin",
+      email: "jeswinpk@agilehead.com",
+      password: "secret",
+      name: "Jeswin PK"
+    });
+    console.log(request);
     const params = new psychopiggy.Params({ username: "jeswin" });
     shouldLib.exist(params);
   });

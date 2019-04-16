@@ -1,5 +1,5 @@
-import pgconfig from "./pgconfig";
-import psychopiggy from "psychopiggy";
+import { getConfig } from "./pgconfig";
+import * as psychopiggy from "psychopiggy";
 
 export interface ICreateUserArgs {
   username: string;

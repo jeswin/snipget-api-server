@@ -5,15 +5,15 @@
   "main": "dist/index",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "./build.sh && node dist/index",
-    "test": "./build.sh && mocha dist/test/test.js"
+    "start": "tsc && node dist/index",
+    "test": "tsc && mocha dist/test/test.js"
   },
   "license": "MIT",
   "dependencies": {
     "@types/koa": "^2.0.46",
     "@types/koa-bodyparser": "^5.0.1",
     "@types/koa-route": "^3.2.4",
-    "@types/node": "^10.5.4",
+    "@types/node": "^11.13.4",
     "@types/pg": "^7.4.14",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@types/mocha": "^5.2.5",
     "@types/should": "^13.0.0",
+    "axios": "^0.18.0",
     "mocha": "^5.2.0",
     "should": "^13.2.2"
   }

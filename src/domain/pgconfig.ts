@@ -1,15 +1,22 @@
 import psychopiggy from "psychopiggy";
 
-const config = {
-  database: process.env.SNIPGET_PG_DB as string,
-  host: process.env.SNIPGET_PG_HOST as string,
-  password: process.env.SNIPGET_PG_PASSWORD as string,
-  port: process.env.SNIPGET_PG_PORT
-    ? parseInt(process.env.SNIPGET_PG_PORT, 10)
-    : 5432,
-  user: process.env.SNIPGET_PG_USER as string
-};
+export interface IPGConfig {
+  database: string;
+  host: string;
+  password: string;
+  port: string;
+  user: string;
+}
 
-psychopiggy.createPool(config);
+let configSettings: IPGConfig;
 
-export default config;
+export async function init(config: IPGConfig) {
+  if (!configSettings) {
+    psychopiggy.createPool(config);
+    configSettings = config;
+  }
+}
+
+export function getConfig() {
+  return configSettings;
+}
